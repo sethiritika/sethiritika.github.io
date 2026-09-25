@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Sports and hikes photo placeholder</title>
+  <desc id="desc">Placeholder to be replaced by a photograph of Ritika playing sports or hiking.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#467b82"/><stop offset="1" stop-color="#13253e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <path d="M90 430 260 235l95 105 90-125 265 215Z" fill="none" stroke="#f7f3ee" stroke-width="15" stroke-linejoin="round" opacity=".72"/>
+  <circle cx="603" cy="145" r="48" fill="none" stroke="#f7f3ee" stroke-width="13" opacity=".65"/>
+  <text x="400" y="520" fill="#f7f3ee" font-family="sans-serif" font-size="31" text-anchor="middle" letter-spacing="4" opacity=".82">YOUR PHOTO HERE</text>
+</svg>

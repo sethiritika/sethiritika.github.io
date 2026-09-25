@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="title desc">
+  <title id="title">Good food photo placeholder</title>
+  <desc id="desc">Placeholder to be replaced by a photograph of Ritika enjoying good food.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#915b41"/><stop offset="1" stop-color="#3b222f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <path d="M210 295c11 116 82 170 190 170s179-54 190-170Z" fill="none" stroke="#f7f3ee" stroke-width="15" stroke-linejoin="round" opacity=".72"/>
+  <path d="M285 253c-31-34 33-51 2-91M401 253c-31-34 33-51 2-91M517 253c-31-34 33-51 2-91" fill="none" stroke="#f7f3ee" stroke-width="13" stroke-linecap="round" opacity=".65"/>
+  <text x="400" y="520" fill="#f7f3ee" font-family="sans-serif" font-size="31" text-anchor="middle" letter-spacing="4" opacity=".82">YOUR PHOTO HERE</text>
+</svg>

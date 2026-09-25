@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 960" role="img" aria-labelledby="title desc">
+  <title id="title">Profile photograph placeholder</title>
+  <desc id="desc">A neutral placeholder indicating where Ritika Sethi's portrait will appear.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e7e0e9"/><stop offset=".55" stop-color="#ddd9e1"/><stop offset="1" stop-color="#d7e3e1"/>
+    </linearGradient>
+    <radialGradient id="p" cx="35%" cy="30%" r="70%">
+      <stop stop-color="#f0d7da"/><stop offset=".6" stop-color="#a797c1"/><stop offset="1" stop-color="#666286"/>
+    </radialGradient>
+  </defs>
+  <rect width="720" height="960" fill="url(#bg)"/>
+  <ellipse cx="570" cy="160" rx="190" ry="54" fill="none" stroke="#17213b" stroke-opacity=".14" transform="rotate(-17 570 160)"/>
+  <circle cx="570" cy="160" r="62" fill="url(#p)" opacity=".8"/>
+  <circle cx="132" cy="215" r="4" fill="#d7b96d"/>
+  <path d="M132 191v48M108 215h48" stroke="#d7b96d" stroke-width="2"/>
+  <path d="M0 780C155 707 269 724 384 793s220 83 336 23v144H0Z" fill="#c4d7d5" opacity=".72"/>
+  <path d="M0 835c164-82 270-43 380 10 116 57 224 52 340-13v128H0Z" fill="#958ab5" opacity=".44"/>
+  <g fill="#17213b" text-anchor="middle">
+    <text x="360" y="438" font-family="Georgia, serif" font-size="42">Your portrait belongs here</text>
+    <text x="360" y="492" font-family="Arial, sans-serif" font-size="17" letter-spacing="3" opacity=".64">ASSETS / IMAGES / PROFILE.JPG</text>
+  </g>
+</svg>

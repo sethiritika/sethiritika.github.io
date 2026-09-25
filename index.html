@@ -1,0 +1,775 @@
+<!DOCTYPE HTML>
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Customized for Ritika Sethi.
+-->
+<html lang="en">
+	<head>
+		<title>Ritika Sethi | Exoplanetary Science</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Ritika Sethi is a PhD candidate at MIT studying exoplanetary science." />
+		<meta name="theme-color" content="#080b18" />
+		<script>if (/^((?!chrome|crios|android|edg).)*safari/i.test(navigator.userAgent)) document.documentElement.classList.add('is-safari');</script>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/styles.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<div id="bg" aria-hidden="true"></div>
+			<canvas id="sky-map" aria-hidden="true"></canvas>
+			<div class="sun-glow" aria-hidden="true"></div>
+			<img class="realistic-star" src="assets/images/star-realistic-display.png" alt="" aria-hidden="true" decoding="async" />
+			<svg class="planetary-lanes" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+				<!-- Concentric, gently tilted ellipses centered on the visible Sun at (100, 105). -->
+				<path id="lane-rocky" class="orbit-line orbit-line-rocky" d="M 661 6 A 570 390 -10 1 1 -461 204 A 570 390 -10 1 1 661 6" />
+				<path id="lane-hot" class="orbit-line orbit-line-hot" d="M 888 -34 A 800 550 -10 1 1 -688 244 A 800 550 -10 1 1 888 -34" />
+				<path id="lane-ringed" class="orbit-line orbit-line-ringed" d="M 1173 -84 A 1090 750 -10 1 1 -973 294 A 1090 750 -10 1 1 1173 -84" />
+				<path id="lane-ice" class="orbit-line orbit-line-ice" d="M 1548 -150 A 1470 1010 -10 1 1 -1348 360 A 1470 1010 -10 1 1 1548 -150" />
+				<defs>
+					<radialGradient id="glow-rocky">
+						<stop offset="0%" stop-color="#e9a98f" stop-opacity="0.42" />
+						<stop offset="100%" stop-color="#e9a98f" stop-opacity="0" />
+					</radialGradient>
+					<radialGradient id="glow-hot">
+						<stop offset="0%" stop-color="#e3a8c5" stop-opacity="0.4" />
+						<stop offset="100%" stop-color="#e3a8c5" stop-opacity="0" />
+					</radialGradient>
+					<radialGradient id="glow-ringed">
+						<stop offset="0%" stop-color="#ead39f" stop-opacity="0.34" />
+						<stop offset="100%" stop-color="#ead39f" stop-opacity="0" />
+					</radialGradient>
+					<radialGradient id="glow-ice">
+						<stop offset="0%" stop-color="#9ed9e5" stop-opacity="0.38" />
+						<stop offset="100%" stop-color="#9ed9e5" stop-opacity="0" />
+					</radialGradient>
+					<!-- Only the viewport-facing portions are animated; the complete ellipses remain visible above. -->
+					<path id="motion-rocky" d="M 651 -33 A 570 390 -10 0 1 -33 499" />
+					<path id="motion-hot" d="M 881 -65 A 800 550 -10 0 1 -65 662" />
+					<path id="motion-ringed" d="M 1178 -52 A 1090 750 -10 0 1 -78 867" />
+					<path id="motion-ice" d="M 1486 294 A 1470 1010 -10 0 1 774 946" />
+				</defs>
+
+				<g class="planet-sprite rocky-planet" data-motion-path="motion-rocky" data-travel-time="14">
+					<circle class="planet-glow" r="47" fill="url(#glow-rocky)" />
+					<image href="assets/images/planet-rocky-display.png" xlink:href="assets/images/planet-rocky-display.png" x="-33" y="-33" width="66" height="66" />
+				</g>
+				<g class="planet-sprite hot-jupiter" data-motion-path="motion-hot" data-travel-time="19">
+					<circle class="planet-glow" r="88" fill="url(#glow-hot)" />
+					<image href="assets/images/exoplanet-realistic-display.png" xlink:href="assets/images/exoplanet-realistic-display.png" x="-65" y="-65" width="130" height="130" />
+				</g>
+				<g class="planet-sprite ringed-planet" data-motion-path="motion-ringed" data-travel-time="24">
+					<ellipse class="planet-glow" rx="98" ry="68" fill="url(#glow-ringed)" />
+					<image href="assets/images/planet-ringed-display.png" xlink:href="assets/images/planet-ringed-display.png" x="-78" y="-52" width="156" height="104" />
+				</g>
+				<g class="planet-sprite ice-giant" data-motion-path="motion-ice" data-travel-time="30">
+					<circle class="planet-glow" r="61" fill="url(#glow-ice)" />
+					<image href="assets/images/planet-ice-giant-display.png" xlink:href="assets/images/planet-ice-giant-display.png" x="-46" y="-46" width="92" height="92" />
+				</g>
+			</svg>
+			<div id="overlay" aria-hidden="true"></div>
+			<div id="main">
+
+				<header id="header">
+					<p class="eyebrow">Astrophysics · Exoplanets · MIT</p>
+					<div class="profile-placeholder">
+						<img src="assets/images/ritika-profile-display.png" alt="Portrait of Ritika Sethi in front of black-hole artwork" decoding="async" fetchpriority="high" />
+					</div>
+					<h1>Ritika Sethi</h1>
+					<p class="identity">PhD Candidate, studying exoplanetary science</p>
+					<p class="institution">Department of Physics &nbsp;&bull;&nbsp; Massachusetts Institute of Technology</p>
+					<nav aria-label="Primary navigation">
+						<ul>
+							<li><a href="#about" class="icon solid fa-user" aria-label="About" aria-controls="about-panel" aria-expanded="false"><span>About</span></a></li>
+							<li><a href="#research" class="icon solid fa-flask" aria-label="Research" aria-controls="research-panel" aria-expanded="false"><span>Research</span></a></li>
+							<li><a href="#outreach" class="icon solid fa-bullhorn" aria-label="Outreach"><span>Outreach</span></a></li>
+							<li><a href="#writings" class="icon solid fa-pen-nib" aria-label="Writings"><span>Writings</span></a></li>
+							<li><a href="#cv" class="icon regular fa-file-alt" aria-label="Curriculum vitae"><span>CV</span></a></li>
+							<li><a href="#contact" class="icon solid fa-envelope" aria-label="Contact"><span>Contact</span></a></li>
+						</ul>
+					</nav>
+				</header>
+
+				<footer id="footer">
+					<span class="copyright">&copy; Ritika Sethi. Design: <a href="https://html5up.net/aerial">Aerial by HTML5 UP</a>.</span>
+				</footer>
+
+			</div>
+			<section id="about-panel" class="about-panel-layer" role="dialog" aria-modal="true" aria-labelledby="about-title" aria-hidden="true" inert>
+				<article class="about-placard">
+					<button class="about-close" type="button" aria-label="Close About panel">&times;</button>
+					<p class="about-kicker" id="about-title">About</p>
+
+					<p>I am a PhD candidate at the <strong>Massachusetts Institute of Technology</strong>, where I work with Prof. Sarah Millholland. Before coming to MIT, I completed an integrated Bachelor's and Master's (BS-MS) degree at the <strong>Indian Institute of Science Education and Research (IISER) Berhampur</strong>.</p>
+
+					<p>I am interested in a wide range of problems involving both planets and stars. I'm trying to reconstruct how systems became the way we observe them today. A few questions I have been thinking about recently are:</p>
+
+					<ol class="about-questions">
+						<li><strong>How do planets become the mature worlds we observe today?</strong> Mature planets go through billions of years of evolution. I am interested in tracing their histories and understanding which physical processes leave observable imprints on present-day exoplanet populations.</li>
+						<li><strong>Can planetary systems survive in some of the densest parts of our Galaxy?</strong> The Nancy Grace Roman Space Telescope has made me think more about stars and planets in the Galactic bulge. I am trying to understand how dense stellar environments reshape binaries and planetary systems.</li>
+						<li><strong>Why are some exoplanets so bizarre?</strong> I have a soft spot for the strange planets: highly misaligned, eccentric, and unexpectedly inflated or puffy ones. I like thinking about the dynamical, interior, tidal, and atmospheric evolution that make them so unusual.</li>
+						<li><strong>Know thy planet, know thy star.</strong> We cannot fully understand planets without understanding their host stars. Binary stars offer an enormous playground for dynamics. I like working on both wide binaries that can drive dramatic orbital evolution in planets and close binaries that evolve through tidal synchronization, circularization, and spin-orbit alignment.</li>
+						<li><strong>What shapes planetary outflows (a closer look)?</strong> Planetary outflows are complex. Their structure and evolution depend on stellar irradiation, heating and cooling, ionization, hydrodynamics, and the gravitational and tidal fields in which the planet is embedded. I enjoy using hydrodynamic simulations to study this complexity, and I am especially interested in how outflows feed back on orbital evolution through angular-momentum transport, reaccretion, and torques from asymmetric tails.</li>
+					</ol>
+
+					<p>Feel free to reach out if you'd like to talk about any of these questions or related topics!</p>
+					<p>Outside of science, I enjoy sports, hiking with friends, arts and crafts, and eating good food. If you'd like a glimpse of some of my side quests, here are a few fun snapshots.</p>
+
+					<div class="sidequest-grid" aria-label="Life outside science galleries">
+						<button class="sidequest-tile" type="button" data-sidequest="sports" data-title="Sports &amp; hikes">
+							<span class="sidequest-photo"><img data-src="assets/images/thumb-sports.jpg" alt="Ritika hiking along a snowy forest trail" decoding="async" /></span>
+							<span class="sidequest-label"><strong>Sports &amp; hikes</strong><em>Click to see more</em></span>
+						</button>
+						<button class="sidequest-tile" type="button" data-sidequest="art" data-title="Art &amp; crafts">
+							<span class="sidequest-photo"><img data-src="assets/images/thumb-art-layers-of-her.jpg" alt="A colorful abstract portrait painting with flowing layers of blue, green, red, and purple" decoding="async" /></span>
+							<span class="sidequest-label"><strong>Art &amp; crafts</strong><em>Click to see more</em></span>
+						</button>
+						<button class="sidequest-tile" type="button" data-sidequest="food" data-title="Good food">
+							<span class="sidequest-photo"><img data-src="assets/images/thumb-food.jpg" alt="A plated restaurant dish with mushroom risotto and dark fruit garnish" decoding="async" /></span>
+							<span class="sidequest-label"><strong>Good food</strong><em>Click to see more</em></span>
+						</button>
+					</div>
+				</article>
+				<div class="sidequest-lightbox" aria-hidden="true" inert>
+					<div class="sidequest-lightbox-card" role="region" aria-labelledby="sidequest-lightbox-title">
+						<button class="sidequest-lightbox-close" type="button" aria-label="Close gallery preview">&times;</button>
+						<h3 id="sidequest-lightbox-title">Gallery</h3>
+						<div class="sidequest-location-view" hidden>
+							<p class="sidequest-location-intro">Choose a location to see its photos.</p>
+							<div class="sidequest-location-grid">
+								<button class="sidequest-location-card" type="button" data-album="alton-bay">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-alton-bay.jpg" alt="Ritika at a lake overlook on Mount Major" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Mount Major</strong><em>New Hampshire · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="yosemite">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-yosemite.jpg" alt="A star-filled night sky above silhouetted trees in Yosemite National Park" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Yosemite National Park</strong><em>California · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="minute-man">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-minute-man.jpg" alt="Ritika standing on the North Bridge at sunset in Minute Man National Historical Park" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Minute Man National Historical Park</strong><em>Concord · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="finger-lakes">
+									<span class="sidequest-location-photo"><img class="photo-subtle-brightness" data-src="assets/images/thumb-finger-lakes.jpg" alt="Taughannock Falls descending into a forested gorge in the Finger Lakes" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Finger Lakes</strong><em>New York · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="snow-mountains">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-snow-mountains.jpg" alt="An autumn forest stream winding through exposed tree roots and rocks" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Snow Mountains</strong><em>North Conway, New Hampshire · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="middlesex-fells">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-middlesex-fells-water.jpg" alt="A calm reservoir bordered by green trees and exposed rock" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Middlesex Fells</strong><em>Massachusetts · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="franconia">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-franconia.jpg" alt="Ritika hiking along a snowy forest trail in Franconia Notch State Park" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Franconia Notch State Park</strong><em>New Hampshire · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="blue-hills">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-blue-hills.jpg" alt="Ritika making bubbles outdoors at Blue Hills" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Blue Hills</strong><em>Milton, Massachusetts · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+								<button class="sidequest-location-card" type="button" data-album="fore-river">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-fore-river.jpg" alt="Friends gathered beside a rocky stream in the forest" decoding="async" /></span>
+									<span class="sidequest-location-label">
+										<span class="sidequest-location-copy"><strong>Fore River Sanctuary</strong><em>Portland · View photos</em></span>
+										<span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span>
+									</span>
+								</button>
+							</div>
+						</div>
+						<div class="sidequest-art-view" hidden>
+							<p class="sidequest-location-intro">Choose an artwork to see the larger image.</p>
+							<div class="sidequest-location-grid">
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="0">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-first-painting.jpg" alt="A night-sky painting with silhouetted branches and three birds" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>First attempt to paint</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="1">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-layers-of-her.jpg" alt="A colorful abstract portrait painting with flowing layers of blue, green, red, and purple" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Layers of Her</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="3">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-cherry-blossom-castle.jpg" alt="An illuminated cherry blossom castle model displayed beneath a glass dome" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Building a Cherry Blossom Castle</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="7">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-large-sky.jpg" alt="A blue night-sky painting with a large tree, a purple moon, and two small figures" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>A small scene under a very large sky.</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="4">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-rangoli-straight.jpg" alt="A colorful handmade peacock rangoli arranged on a tiled floor" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Rangoli — celebrating festivals in color</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="2">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-original-brighter.jpg" alt="Colorful abstract artwork with bright organic shapes on a black background" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>What do you see here? I see trees.</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="5">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-kid-again.jpg" alt="A colorful hand-drawn space scene with an astronaut, spaceship, planets, and meteors" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Being a kid again</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-art-card" type="button" data-art-index="6">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-art-hold-on-sketch-clear.jpg" alt="A pencil sketch of a child holding an adult’s finger" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>I’ll always hold on to you. ♡</strong><em>View artwork</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+							</div>
+						</div>
+						<div class="sidequest-food-view" hidden>
+							<p class="sidequest-location-intro">Choose a dish to see its photos.</p>
+							<div class="sidequest-location-grid">
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="chokhi-dhani">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-chokhi-dhani.jpg" alt="Ritika and her friend enjoying Rajasthani thalis at Chokhi Dhani" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Rajasthani Thali at Chokhi Dhani.</strong><em>View photos</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="food-original">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food.jpg" alt="A plated duck dish with mushroom risotto and dark fruit garnish" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>No words — Mistral, Back Bay, Boston.</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="turkey-breakfast">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-turkey.jpg" alt="A colorful Turkish breakfast spread arranged across a red table covering" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>One of my favorite things about Turkey</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="pav-bhaji">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-pav-bhaji.jpg" alt="Homemade pav bhaji surrounded by toasted bread rolls" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Homemade Pav Bhaji</strong><em>View photos</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="zinnekens-waffles">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-zinnekens-waffles.jpg" alt="Waffles topped with banana, chocolate and caramel sauces, ice cream, and whipped cream" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Best waffles I’ve ever had!</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="old-delhi">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-old-delhi.jpg" alt="Nalli nihari, khamiri roti, and chicken biryani served with onions, radishes, lime, and chutney" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Old Delhi on a plate.</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="butter-chicken-naan">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-butter-chicken-naan.jpg" alt="Homemade butter chicken served with naan around a dining table" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Homemade butter chicken and naan</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="dilli-momos">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-dilli-momos.jpg" alt="A plate of seasoned Delhi momos served with red and white sauces" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Nothing beats Dilli ke Momos &lt;3</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+								<button class="sidequest-location-card sidequest-food-card" type="button" data-food-album="aaloo-kachodi">
+									<span class="sidequest-location-photo"><img data-src="assets/images/thumb-food-aaloo-kachodi.jpg" alt="Two homemade potato kachodis served with potato curry" decoding="async" /></span>
+									<span class="sidequest-location-label"><span class="sidequest-location-copy"><strong>Homemade aaloo (potato) kachodi</strong><em>View photo</em></span><span class="sidequest-location-arrow" aria-hidden="true">&rarr;</span></span>
+								</button>
+							</div>
+						</div>
+						<div class="sidequest-album-view">
+							<button class="sidequest-gallery-back" type="button" hidden>&larr; All locations</button>
+							<div class="sidequest-lightbox-media">
+								<button class="sidequest-gallery-nav sidequest-gallery-prev" type="button" aria-label="Previous photo">&#8249;</button>
+								<img class="sidequest-lightbox-image" src="assets/images/thumb-sports.jpg" alt="Ritika hiking along a snowy forest trail" decoding="async" />
+								<button class="sidequest-gallery-nav sidequest-gallery-next" type="button" aria-label="Next photo">&#8250;</button>
+							</div>
+							<p class="sidequest-lightbox-caption">Winter hike</p>
+							<p class="sidequest-lightbox-counter" aria-live="polite">1 / 1</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="research-panel" class="about-panel-layer research-panel-layer" role="dialog" aria-modal="true" aria-labelledby="research-title" aria-hidden="true" inert>
+				<article class="about-placard research-placard">
+					<button class="about-close research-close" type="button" aria-label="Close Research panel">&times;</button>
+					<p class="about-kicker" id="research-title">Research</p>
+
+					<div class="research-intro">
+						<p>Here are a few snapshots of the research I’ve been working on and the questions I’ve been thinking about.</p>
+						<p class="research-publications">For a complete list of my publications, see <a href="https://ui.adsabs.harvard.edu/public-libraries/SGVfj--USyupX41MkSkURA" target="_blank" rel="noopener noreferrer">NASA ADS</a> or <a href="https://scholar.google.com/citations?user=SPMvAXYAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
+					</div>
+
+					<div class="research-features">
+						<article class="research-feature research-feature--evolution">
+							<div class="research-card-inner">
+								<div class="research-card-face research-card-front">
+									<h3 class="research-feature-title--long">Tracing the evolutionary histories of exoplanetary systems.</h3>
+									<button class="research-figure research-figure--full research-card-turn" type="button" aria-label="Read the motivation for tracing the evolutionary histories of exoplanetary systems" aria-pressed="false">
+										<img src="assets/images/research-evolutionary-histories.webp" alt="Diagram connecting planetary orbital misalignment and tidal heating with occurrence-rate measurements across young, intermediate, and old planetary populations" loading="lazy" decoding="async" />
+									</button>
+									<div class="research-card-footer">
+										<div class="research-links research-paper-links" aria-label="Relevant papers for tracing the evolutionary histories of exoplanetary systems">
+											<span class="research-links-label">Relevant papers:</span>
+											<a href="https://ui.adsabs.harvard.edu/abs/2025ApJ...988..247S/abstract" target="_blank" rel="noopener noreferrer">Sethi &amp; Millholland 2025</a>
+											<a href="https://ui.adsabs.harvard.edu/abs/2026arXiv260920611S/abstract" target="_blank" rel="noopener noreferrer">Sethi, Millholland &amp; Hallatt 2026</a>
+											<a href="#" aria-disabled="true" data-placeholder-link>Code coming soon</a>
+										</div>
+										<button class="research-turn-prompt research-card-turn" type="button">Read the bigger picture <span aria-hidden="true">↻</span></button>
+									</div>
+								</div>
+								<div class="research-card-face research-card-back" aria-hidden="true" inert>
+									<h3 class="research-feature-title--long">Tracing the evolutionary histories of exoplanetary systems.</h3>
+									<p>Mature planetary systems often carry hidden imprints of the pathways that shaped them. Their orbital architectures—particularly highly misaligned or eccentric orbits—can preserve clues about a dynamically violent past. I use theoretical models to reconstruct these histories and understand the origins of unusual architectures, including the effects of gravitational perturbations from other planets or stellar companions on planetary orbits. I am also interested in how the subsequent tidal evolution of these systems can reshape not only a planet’s orbit, but also its physical properties—for example, tidal heating can inflate a planet’s radius and lower its density.</p>
+									<p>A complementary question is how the broader planet population evolves with time. Much of what we know about small planets comes from mature systems, giving us primarily the end state after billions of years of evolution. Some of the first occurrence-rate measurements around young stars are now providing snapshots of planetary populations at earlier stages, allowing us to ask how those populations transform with age. I develop computationally efficient models that follow atmospheric mass loss, thermal evolution, and orbital dynamics in a coupled way—an approach that remains relatively unexplored—to understand how these interdependent physical processes sculpt young planets into the mature populations we observe today.</p>
+									<button class="research-turn-prompt research-card-turn" type="button">Return to the figure <span aria-hidden="true">↺</span></button>
+								</div>
+							</div>
+						</article>
+
+						<article class="research-feature">
+							<div class="research-card-inner">
+								<div class="research-card-face research-card-front">
+									<h3>The 3D Hydrodynamics of Planetary Outflows</h3>
+									<button class="research-figure research-figure-placeholder research-card-turn" type="button" aria-label="Read the motivation for The 3D Hydrodynamics of Planetary Outflows" aria-pressed="false"><span>Figure coming soon</span></button>
+									<div class="research-links" aria-label="Links for The 3D Hydrodynamics of Planetary Outflows">
+										<a href="#" aria-disabled="true" data-placeholder-link>Publication details coming soon</a>
+										<a href="#" aria-disabled="true" data-placeholder-link>Code coming soon</a>
+									</div>
+									<button class="research-turn-prompt research-card-turn" type="button">Read the bigger picture <span aria-hidden="true">↻</span></button>
+								</div>
+								<div class="research-card-face research-card-back" aria-hidden="true" inert>
+									<h3>The 3D Hydrodynamics of Planetary Outflows</h3>
+									<p>Planetary outflows are shaped by stellar irradiation, heating and cooling, ionization, hydrodynamics, and the gravitational and tidal fields in which the planet is embedded. I use 3D hydrodynamic simulations to study the structure of these outflows and how they may feed back on orbital evolution through angular-momentum transport, reaccretion, and asymmetric torques.</p>
+									<button class="research-turn-prompt research-card-turn" type="button">Return to the figure <span aria-hidden="true">↺</span></button>
+								</div>
+							</div>
+						</article>
+
+						<article class="research-feature">
+							<div class="research-card-inner">
+								<div class="research-card-face research-card-front">
+									<h3>Planets in a Galactic Context</h3>
+									<button class="research-figure research-figure-placeholder research-card-turn" type="button" aria-label="Read the motivation for Planets in a Galactic Context" aria-pressed="false"><span>Figure coming soon</span></button>
+									<div class="research-links" aria-label="Links for Planets in a Galactic Context">
+										<a href="#" aria-disabled="true" data-placeholder-link>Project details coming soon</a>
+										<a href="#" aria-disabled="true" data-placeholder-link>Code coming soon</a>
+									</div>
+									<button class="research-turn-prompt research-card-turn" type="button">Read the bigger picture <span aria-hidden="true">↻</span></button>
+								</div>
+								<div class="research-card-face research-card-back" aria-hidden="true" inert>
+									<h3>Planets in a Galactic Context</h3>
+									<p>Planetary systems do not evolve in isolation. I am interested in how the broader Galactic environment—especially dense stellar regions such as the Galactic bulge—can alter binaries and planetary systems through repeated stellar encounters and long-term dynamical evolution.</p>
+									<button class="research-turn-prompt research-card-turn" type="button">Return to the figure <span aria-hidden="true">↺</span></button>
+								</div>
+							</div>
+						</article>
+
+						<article class="research-feature">
+							<div class="research-card-inner">
+								<div class="research-card-face research-card-front">
+									<h3>Tidal Evolution in Binary Stars</h3>
+									<button class="research-figure research-figure-placeholder research-card-turn" type="button" aria-label="Read the motivation for Tidal Evolution in Binary Stars" aria-pressed="false"><span>Figure coming soon</span></button>
+									<div class="research-links" aria-label="Links for Tidal Evolution in Binary Stars">
+										<a href="#" aria-disabled="true" data-placeholder-link>Publication details coming soon</a>
+									</div>
+									<button class="research-turn-prompt research-card-turn" type="button">Read the bigger picture <span aria-hidden="true">↻</span></button>
+								</div>
+								<div class="research-card-face research-card-back" aria-hidden="true" inert>
+									<h3>Tidal Evolution in Binary Stars</h3>
+									<p>Binary stars provide a rich laboratory for studying long-term dynamical evolution. I am interested in how tides drive synchronization, circularization, and spin-orbit evolution in close binaries, and how wider stellar companions can trigger strong dynamical changes in planetary systems.</p>
+									<button class="research-turn-prompt research-card-turn" type="button">Return to the figure <span aria-hidden="true">↺</span></button>
+								</div>
+							</div>
+						</article>
+					</div>
+				</article>
+			</section>
+			<p class="sky-caption" aria-hidden="true"><span>New Delhi sky</span><time id="sky-time">17 May 2000 · 00:00 IST</time></p>
+			<p class="constellation-tooltip" aria-hidden="true"></p>
+		</div>
+		<script src="assets/js/sky-data.js"></script>
+		<script src="assets/js/sky.js"></script>
+		<script>
+			(function animatePlanetsFromRandomPhases() {
+				const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				const isSafari = document.documentElement.classList.contains('is-safari');
+				// Planet transforms are inexpensive; 24–30 FPS keeps their paths fluid
+				// while avoiding unnecessary 60 FPS SVG updates.
+				const planetFrameInterval = isSafari ? 42 : 33;
+				const phaseSlots = [0.08, 0.31, 0.56, 0.81]
+					.map(phase => phase + (Math.random() - 0.5) * 0.1);
+
+				for (let index = phaseSlots.length - 1; index > 0; index -= 1) {
+					const swapIndex = Math.floor(Math.random() * (index + 1));
+					[phaseSlots[index], phaseSlots[swapIndex]] = [phaseSlots[swapIndex], phaseSlots[index]];
+				}
+
+				const planets = Array.from(document.querySelectorAll('.planet-sprite')).map((planet, index) => {
+					const path = document.getElementById(planet.dataset.motionPath);
+					const image = planet.querySelector('image');
+					const travelTime = Number.parseFloat(planet.dataset.travelTime);
+					const pathLength = path.getTotalLength();
+					const faceRotation = Math.random() * 360;
+
+					image.setAttribute('transform', `rotate(${faceRotation.toFixed(1)})`);
+					return { planet, path, pathLength, travelTime, phase: phaseSlots[index] };
+				});
+
+				const startedAt = performance.now();
+				let lastPlanetFrame = -Infinity;
+				function renderPlanets(now) {
+					const paused = document.hidden || document.body.classList.contains('modal-open');
+					if (!paused && now - lastPlanetFrame >= planetFrameInterval) {
+						planets.forEach(({ planet, path, pathLength, travelTime, phase }) => {
+							const cycleTime = travelTime + 0.5;
+							const elapsed = ((now - startedAt) / 1000 + phase * travelTime) % cycleTime;
+							const progress = Math.min(elapsed / travelTime, 1);
+							const point = path.getPointAtLength(pathLength * progress);
+							planet.setAttribute('transform', `translate(${point.x.toFixed(2)} ${point.y.toFixed(2)})`);
+						});
+						lastPlanetFrame = now;
+					}
+
+					if (!reducedMotion) {
+						window.requestAnimationFrame(renderPlanets);
+					}
+				}
+
+				renderPlanets(startedAt);
+			})();
+
+			(function setUpAboutPanel() {
+				const trigger = document.querySelector('[aria-controls="about-panel"]');
+				const panel = document.getElementById('about-panel');
+				const closeButton = panel.querySelector('.about-close');
+				const main = document.getElementById('main');
+				const placard = panel.querySelector('.about-placard');
+				const sidequestTiles = Array.from(panel.querySelectorAll('.sidequest-tile'));
+				const lightbox = panel.querySelector('.sidequest-lightbox');
+				const lightboxCard = panel.querySelector('.sidequest-lightbox-card');
+				const lightboxClose = panel.querySelector('.sidequest-lightbox-close');
+				const lightboxTitle = panel.querySelector('#sidequest-lightbox-title');
+				const lightboxImage = panel.querySelector('.sidequest-lightbox-image');
+				const lightboxCaption = panel.querySelector('.sidequest-lightbox-caption');
+				const lightboxCounter = panel.querySelector('.sidequest-lightbox-counter');
+				const previousPhoto = panel.querySelector('.sidequest-gallery-prev');
+				const nextPhoto = panel.querySelector('.sidequest-gallery-next');
+				const locationView = panel.querySelector('.sidequest-location-view');
+				const artView = panel.querySelector('.sidequest-art-view');
+				const foodView = panel.querySelector('.sidequest-food-view');
+				const albumView = panel.querySelector('.sidequest-album-view');
+				const locationCards = Array.from(panel.querySelectorAll('.sidequest-location-card'));
+				const artCards = Array.from(panel.querySelectorAll('.sidequest-art-card'));
+				const foodCards = Array.from(panel.querySelectorAll('.sidequest-food-card'));
+				const galleryBack = panel.querySelector('.sidequest-gallery-back');
+				const galleries = {
+					franconia: [
+						{ src: 'assets/images/sidequest-franconia-hike.jpg', alt: 'Ritika hiking along a snowy forest trail in Franconia Notch State Park', caption: 'Franconia Notch State Park, New Hampshire' },
+						{ src: 'assets/images/sidequest-franconia-stream.jpg', alt: 'A stream winding through a snow-covered forest in Franconia Notch State Park', caption: 'Franconia Notch State Park, New Hampshire' }
+					],
+					'fore-river': [
+						{ src: 'assets/images/sidequest-fore-river-group.jpg', alt: 'Friends gathered beside a rocky stream in the forest', caption: 'Fore River Sanctuary, Portland' },
+						{ src: 'assets/images/sidequest-fore-river-falls.jpg', alt: 'A small waterfall flowing over dark rocks beneath a green forest canopy', caption: 'Fore River Sanctuary, Portland' }
+					],
+					yosemite: [
+						{ src: 'assets/images/sidequest-yosemite-stars.jpg', alt: 'A star-filled night sky above silhouetted trees in Yosemite National Park', caption: 'Yosemite National Park, California' },
+						{ src: 'assets/images/sidequest-yosemite-falls-night.jpg', alt: 'Yosemite Falls and granite cliffs beneath a star-filled night sky', caption: 'Yosemite National Park, California' }
+					],
+					'finger-lakes': [
+						{ src: 'assets/images/sidequest-finger-lakes-taughannock.jpg', alt: 'Taughannock Falls descending into a forested gorge in the Finger Lakes', caption: 'Taughannock Falls · Finger Lakes, New York', brighten: true },
+						{ src: 'assets/images/sidequest-finger-lakes-ithaca-falls.jpg', alt: 'A broad waterfall cascading over layered rock in the Finger Lakes', caption: 'Finger Lakes, New York' }
+					],
+					'snow-mountains': [
+						{ src: 'assets/images/sidequest-snow-mountains-stream.jpg', alt: 'An autumn forest stream winding through exposed tree roots and rocks', caption: 'Snow Mountains · North Conway, New Hampshire' },
+						{ src: 'assets/images/sidequest-snow-mountains-overlook.jpg', alt: 'A broad mountain view beneath a clear blue sky near North Conway', caption: 'Snow Mountains · North Conway, New Hampshire' },
+						{ src: 'assets/images/sidequest-snow-mountains-waterfall.jpg', alt: 'A waterfall framed by colorful autumn foliage in the mountains', caption: 'Snow Mountains · North Conway, New Hampshire' }
+					],
+					'minute-man': [
+						{ src: 'assets/images/sidequest-minute-man-portrait.jpg', alt: 'Ritika standing on the North Bridge at sunset in Minute Man National Historical Park', caption: 'Minute Man National Historical Park · Concord' },
+						{ src: 'assets/images/sidequest-minute-man-river.jpg', alt: 'A quiet river bordered by leafless trees beneath a clear blue sky', caption: 'Minute Man National Historical Park · Concord' },
+						{ src: 'assets/images/sidequest-minute-man-sunset.jpg', alt: 'The North Bridge and river silhouetted against a golden sunset', caption: 'Minute Man National Historical Park · Concord' }
+					],
+					'middlesex-fells': [
+						{ src: 'assets/images/sidequest-middlesex-fells-reservoir.jpg', alt: 'A calm reservoir bordered by green trees and exposed rock', caption: 'Middlesex Fells, Massachusetts' },
+						{ src: 'assets/images/sidequest-middlesex-fells-hilltop.jpg', alt: 'A green hilltop view overlooking the towns surrounding Middlesex Fells', caption: 'Middlesex Fells, Massachusetts' }
+					],
+					'blue-hills': [
+						{ src: 'assets/images/sidequest-blue-hills-bubbles.jpg', alt: 'Ritika making bubbles outdoors at Blue Hills', caption: 'Blue Hills · Milton, Massachusetts' },
+						{ src: 'assets/images/sidequest-blue-hills-hike.jpg', alt: 'Friends posing on a rocky hiking trail at Blue Hills', caption: 'Blue Hills · Milton, Massachusetts' }
+					],
+					'alton-bay': [
+						{ src: 'assets/images/sidequest-alton-bay-portrait.jpg', alt: 'Ritika at a lake overlook on Mount Major', caption: 'Mount Major, New Hampshire' },
+						{ src: 'assets/images/sidequest-alton-bay-overlook.jpg', alt: 'A panoramic lake and mountain view beneath dramatic clouds from Mount Major', caption: 'Mount Major, New Hampshire' },
+						{ src: 'assets/images/sidequest-alton-bay-boulders.jpg', alt: 'Two hikers climbing across large boulders in the forest on Mount Major', caption: 'Mount Major, New Hampshire' }
+					],
+					art: [
+						{ src: 'assets/images/sidequest-art-first-painting.jpg', alt: 'A night-sky painting with silhouetted branches and three birds', caption: 'First attempt to paint' },
+						{ src: 'assets/images/sidequest-art-layers-of-her.jpg', alt: 'A colorful abstract portrait painting with flowing layers of blue, green, red, and purple', caption: 'Layers of Her — There are rivers in her softness, forests in her patience, and fire in the places she protects.' },
+						{ src: 'assets/images/sidequest-art-original-brighter.jpg', alt: 'Colorful abstract artwork with bright organic shapes on a black background', caption: 'What do you see here? I see trees.' },
+						{ src: 'assets/images/sidequest-art-cherry-blossom-castle.jpg', alt: 'An illuminated cherry blossom castle model displayed beneath a glass dome', caption: 'Building a Cherry Blossom Castle' },
+						{ src: 'assets/images/sidequest-art-rangoli-straight.jpg', alt: 'A colorful handmade peacock rangoli arranged on a tiled floor', caption: 'Rangoli — the Indian art of celebrating festivals with color.' },
+						{ src: 'assets/images/sidequest-art-kid-again.jpg', alt: 'A colorful hand-drawn space scene with an astronaut, spaceship, planets, and meteors', caption: 'Being a kid again—scribbling the things that fascinate me.' },
+						{ src: 'assets/images/sidequest-art-hold-on-sketch-clear.jpg', alt: 'A pencil sketch of a child holding an adult’s finger', caption: 'I’ll always hold on to you. ♡' },
+						{ src: 'assets/images/sidequest-art-large-sky.jpg', alt: 'A blue night-sky painting with a large tree, a purple moon, and two small figures', caption: 'A small scene under a very large sky.' }
+					],
+					'food-original': [
+						{ src: 'assets/images/sidequest-food-original.png', alt: 'A plated duck dish with mushroom risotto and dark fruit garnish', caption: 'No words — Mistral, Back Bay, Boston.' }
+					],
+					'dilli-momos': [
+						{ src: 'assets/images/sidequest-food-dilli-momos.jpg', alt: 'A plate of seasoned Delhi momos served with red and white sauces', caption: 'Nothing beats Dilli ke Momos <3' }
+					],
+					'old-delhi': [
+						{ src: 'assets/images/sidequest-food-old-delhi.jpg', alt: 'Nalli nihari, khamiri roti, and chicken biryani served with onions, radishes, lime, and chutney', caption: 'Old Delhi on a plate: nalli nihari, khamiri roti, and chicken biryani.' }
+					],
+					'turkey-breakfast': [
+						{ src: 'assets/images/sidequest-food-turkey.jpg', alt: 'A colorful Turkish breakfast spread arranged across a red table covering', caption: 'One of my favorite things about Turkey' }
+					],
+					'pav-bhaji': [
+						{ src: 'assets/images/sidequest-food-pav-bhaji-overhead.jpg', alt: 'Homemade pav bhaji surrounded by toasted bread rolls, viewed from above', caption: 'Homemade Pav Bhaji' },
+						{ src: 'assets/images/sidequest-food-pav-bhaji-window.jpg', alt: 'Homemade pav bhaji photographed beside a window overlooking the city', caption: 'Homemade Pav Bhaji' }
+					],
+					'aaloo-kachodi': [
+						{ src: 'assets/images/sidequest-food-aaloo-kachodi.jpg', alt: 'Two homemade potato kachodis served with potato curry', caption: 'Homemade aaloo (potato) kachodi' }
+					],
+					'butter-chicken-naan': [
+						{ src: 'assets/images/sidequest-food-butter-chicken-naan.jpg', alt: 'Homemade butter chicken served with naan around a dining table', caption: 'Homemade butter chicken and naan' }
+					],
+					'chokhi-dhani': [
+						{ src: 'assets/images/sidequest-food-chokhi-dhani-friends.jpg', alt: 'Ritika and her friend enjoying Rajasthani thalis at Chokhi Dhani', caption: 'Rajasthani thali at Chokhi Dhani — so much culture and flavor on one plate.' },
+						{ src: 'assets/images/sidequest-food-chokhi-dhani-thali.jpg', alt: 'A traditional Rajasthani thali served at Chokhi Dhani', caption: 'Rajasthani thali at Chokhi Dhani — so much culture and flavor on one plate.' }
+					],
+					'zinnekens-waffles': [
+						{ src: 'assets/images/sidequest-food-zinnekens-waffles.jpg', alt: 'Waffles topped with banana, chocolate and caramel sauces, ice cream, and whipped cream', caption: 'Zinneken’s in Harvard Square — the best waffles I’ve ever had!' }
+					]
+				};
+				const galleryTitles = {
+					franconia: 'Franconia Notch State Park, New Hampshire',
+					'fore-river': 'Fore River Sanctuary, Portland',
+					yosemite: 'Yosemite National Park, California',
+					'finger-lakes': 'Finger Lakes, New York',
+					'snow-mountains': 'Snow Mountains, North Conway, New Hampshire',
+					'minute-man': 'Minute Man National Historical Park, Concord',
+					'middlesex-fells': 'Middlesex Fells, Massachusetts',
+					'blue-hills': 'Blue Hills, Milton, Massachusetts',
+					'alton-bay': 'Mount Major, New Hampshire',
+					art: 'Art & crafts',
+					'food-original': 'Mistral, Back Bay, Boston',
+					'dilli-momos': 'Nothing beats Dilli ke Momos <3',
+					'old-delhi': 'Old Delhi on a plate',
+					'turkey-breakfast': 'One of my favorite things about Turkey',
+					'pav-bhaji': 'Homemade Pav Bhaji',
+					'aaloo-kachodi': 'Homemade aaloo (potato) kachodi',
+					'butter-chicken-naan': 'Homemade butter chicken and naan',
+					'chokhi-dhani': 'Rajasthani thali at Chokhi Dhani',
+					'zinnekens-waffles': 'Zinneken’s in Harvard Square'
+				};
+				let activeTile = null;
+				let activeGallery = [];
+				let activeImageIndex = 0;
+				let gridScrollTop = 0;
+				let activeGrid = null;
+
+				function loadImagesWithin(container) {
+					container.querySelectorAll('img[data-src]').forEach(image => {
+						image.src = image.dataset.src;
+						image.removeAttribute('data-src');
+					});
+				}
+
+				function renderGalleryImage() {
+					const item = activeGallery[activeImageIndex];
+					if (!item) return;
+					lightboxImage.src = item.src;
+					lightboxImage.alt = item.alt;
+					lightboxImage.classList.toggle('photo-subtle-brightness', Boolean(item.brighten));
+					lightboxCaption.textContent = item.caption;
+					lightboxCounter.textContent = `${activeImageIndex + 1} / ${activeGallery.length}`;
+					const hasMultiplePhotos = activeGallery.length > 1;
+					previousPhoto.hidden = !hasMultiplePhotos;
+					nextPhoto.hidden = !hasMultiplePhotos;
+				}
+
+				function moveGallery(direction) {
+					activeImageIndex = (activeImageIndex + direction + activeGallery.length) % activeGallery.length;
+					renderGalleryImage();
+				}
+
+				function showCardGrid(gridName, restoreScroll = false) {
+					activeGrid = gridName;
+					const showingSports = gridName === 'sports';
+					const showingArt = gridName === 'art';
+					const activeCardView = showingSports ? locationView : (showingArt ? artView : foodView);
+					loadImagesWithin(activeCardView);
+					lightboxTitle.textContent = showingSports ? 'Sports & hikes' : (showingArt ? 'Art & crafts' : 'Good food');
+					locationView.hidden = !showingSports;
+					artView.hidden = !showingArt;
+					foodView.hidden = gridName !== 'food';
+					albumView.hidden = true;
+					lightboxImage.src = 'assets/images/thumb-sports.jpg';
+					window.requestAnimationFrame(() => {
+						lightboxCard.scrollTop = restoreScroll ? gridScrollTop : 0;
+					});
+				}
+
+				function showAlbum(albumName, returnGrid = null, artIndex = null) {
+					if (returnGrid) {
+						gridScrollTop = lightboxCard.scrollTop;
+						activeGrid = returnGrid;
+					}
+					activeGallery = galleries[albumName];
+					if (albumName === 'art' && artIndex !== null) activeGallery = [galleries.art[artIndex]];
+					activeImageIndex = 0;
+					lightboxTitle.textContent = galleryTitles[albumName];
+					locationView.hidden = true;
+					artView.hidden = true;
+					foodView.hidden = true;
+					albumView.hidden = false;
+					galleryBack.hidden = !returnGrid;
+					if (returnGrid) galleryBack.innerHTML = returnGrid === 'art' ? '&larr; All artworks' : (returnGrid === 'food' ? '&larr; All dishes' : '&larr; All locations');
+					renderGalleryImage();
+					lightboxCard.scrollTop = 0;
+				}
+
+				function setLightboxOpen(open, tile = activeTile) {
+					if (open && tile) {
+						activeTile = tile;
+						lightbox.dataset.sidequest = tile.dataset.sidequest;
+						if (tile.dataset.sidequest === 'sports') showCardGrid('sports', false);
+						else if (tile.dataset.sidequest === 'art') showCardGrid('art', false);
+						else if (tile.dataset.sidequest === 'food') showCardGrid('food', false);
+						else showAlbum(tile.dataset.sidequest, false);
+					}
+					lightbox.classList.toggle('is-visible', open);
+					lightbox.setAttribute('aria-hidden', String(!open));
+					lightbox.toggleAttribute('inert', !open);
+					placard.toggleAttribute('inert', open);
+					if (!open) lightboxImage.src = 'assets/images/thumb-sports.jpg';
+					if (open) lightboxClose.focus();
+					else if (activeTile) activeTile.focus();
+				}
+
+				function setOpen(open) {
+					if (!open && lightbox.classList.contains('is-visible')) setLightboxOpen(false);
+					if (open) loadImagesWithin(placard);
+					panel.classList.toggle('is-visible', open);
+					panel.setAttribute('aria-hidden', String(!open));
+					trigger.setAttribute('aria-expanded', String(open));
+					panel.toggleAttribute('inert', !open);
+					main.toggleAttribute('inert', open);
+					document.body.classList.toggle('modal-open', open);
+					if (open) closeButton.focus();
+					else trigger.focus();
+				}
+
+				trigger.addEventListener('click', event => {
+					event.preventDefault();
+					setOpen(true);
+				});
+				closeButton.addEventListener('click', () => setOpen(false));
+				sidequestTiles.forEach(tile => tile.addEventListener('click', () => setLightboxOpen(true, tile)));
+				locationCards.filter(card => card.dataset.album).forEach(card => card.addEventListener('click', () => showAlbum(card.dataset.album, 'sports')));
+				artCards.forEach(card => card.addEventListener('click', () => showAlbum('art', 'art', Number(card.dataset.artIndex))));
+				foodCards.forEach(card => card.addEventListener('click', () => showAlbum(card.dataset.foodAlbum, 'food')));
+				galleryBack.addEventListener('click', () => showCardGrid(activeGrid, true));
+				previousPhoto.addEventListener('click', () => moveGallery(-1));
+				nextPhoto.addEventListener('click', () => moveGallery(1));
+				lightboxClose.addEventListener('click', () => setLightboxOpen(false));
+				lightbox.addEventListener('click', event => {
+					if (event.target === lightbox) setLightboxOpen(false);
+				});
+				panel.addEventListener('click', event => {
+					if (event.target === panel) setOpen(false);
+				});
+				document.addEventListener('keydown', event => {
+					const albumIsVisible = lightbox.classList.contains('is-visible') && !albumView.hidden;
+					if (albumIsVisible && event.key === 'ArrowLeft') return moveGallery(-1);
+					if (albumIsVisible && event.key === 'ArrowRight') return moveGallery(1);
+					if (event.key !== 'Escape') return;
+					if (lightbox.classList.contains('is-visible')) setLightboxOpen(false);
+					else if (panel.classList.contains('is-visible')) setOpen(false);
+				});
+			})();
+
+			(function setUpResearchPanel() {
+				const trigger = document.querySelector('[aria-controls="research-panel"]');
+				const panel = document.getElementById('research-panel');
+				if (!trigger || !panel) return;
+				const closeButton = panel.querySelector('.research-close');
+				const placard = panel.querySelector('.research-placard');
+				const main = document.getElementById('main');
+
+				function setOpen(open) {
+					panel.classList.toggle('is-visible', open);
+					panel.setAttribute('aria-hidden', String(!open));
+					panel.toggleAttribute('inert', !open);
+					trigger.setAttribute('aria-expanded', String(open));
+					main.toggleAttribute('inert', open);
+					document.body.classList.toggle('modal-open', open);
+					if (open) {
+						placard.scrollTop = 0;
+						closeButton.focus();
+					} else {
+						trigger.focus();
+					}
+				}
+
+				trigger.addEventListener('click', event => {
+					event.preventDefault();
+					setOpen(true);
+				});
+				closeButton.addEventListener('click', () => setOpen(false));
+				panel.addEventListener('click', event => {
+					if (event.target === panel) setOpen(false);
+				});
+				panel.querySelectorAll('[data-placeholder-link]').forEach(link => {
+					link.addEventListener('click', event => event.preventDefault());
+				});
+				panel.querySelectorAll('.research-feature').forEach(card => {
+					const front = card.querySelector('.research-card-front');
+					const back = card.querySelector('.research-card-back');
+					const frontTurn = front && front.querySelector('.research-card-turn');
+					const backTurn = back && back.querySelector('.research-card-turn');
+					if (!front || !back || !frontTurn || !backTurn) return;
+
+					function setFlipped(flipped, source) {
+						card.classList.toggle('is-flipped', flipped);
+						front.setAttribute('aria-hidden', String(flipped));
+						back.setAttribute('aria-hidden', String(!flipped));
+						front.toggleAttribute('inert', flipped);
+						back.toggleAttribute('inert', !flipped);
+						front.querySelectorAll('.research-card-turn').forEach(button => {
+							button.setAttribute('aria-pressed', String(flipped));
+						});
+						if (source) requestAnimationFrame(() => (flipped ? backTurn : frontTurn).focus());
+					}
+
+					card.querySelectorAll('.research-card-turn').forEach(button => {
+						button.addEventListener('click', () => setFlipped(!card.classList.contains('is-flipped'), button));
+					});
+					back.addEventListener('click', event => {
+						if (event.target.closest('.research-card-turn')) return;
+						setFlipped(false, event);
+					});
+				});
+				document.addEventListener('keydown', event => {
+					if (event.key === 'Escape' && panel.classList.contains('is-visible')) setOpen(false);
+				});
+			})();
+
+			window.onload = function() {
+				document.body.classList.remove('is-preload');
+			};
+			window.ontouchmove = function(event) {
+				return Boolean(event.target.closest && event.target.closest('.about-placard'));
+			};
+			window.onorientationchange = function() { document.body.scrollTop = 0; };
+		</script>
+	</body>
+</html>
