@@ -365,6 +365,23 @@ body { background: var(--night); }
 
 .contact-panel-layer { background: rgba(2, 4, 13, 0.62); }
 
+.coming-soon-panel-layer { background: rgba(2, 4, 13, 0.62); }
+
+.coming-soon-placard {
+	width: min(34rem, 92vw);
+	padding-block: clamp(4rem, 10vw, 6.5rem);
+	background: linear-gradient(145deg, rgba(8, 11, 27, 0.975), rgba(19, 16, 35, 0.955));
+	box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.065);
+	text-align: center;
+}
+
+.coming-soon-placard h2 {
+	margin: 0 auto;
+	color: var(--lavender);
+	font-size: clamp(2.25rem, 5vw, 3.4rem);
+	text-shadow: 0 0 1.15rem rgba(199, 184, 229, 0.22);
+}
+
 .contact-placard {
 	width: min(58rem, 94vw);
 	background: linear-gradient(145deg, rgba(8, 11, 27, 0.975), rgba(19, 16, 35, 0.955));

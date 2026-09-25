@@ -85,8 +85,8 @@
 						<ul>
 							<li><a href="#about" class="icon solid fa-user" aria-label="About" aria-controls="about-panel" aria-expanded="false"><span>About</span></a></li>
 							<li><a href="#research" class="icon solid fa-flask" aria-label="Research" aria-controls="research-panel" aria-expanded="false"><span>Research</span></a></li>
-							<li><a href="#outreach" class="icon solid fa-bullhorn" aria-label="Outreach"><span>Outreach</span></a></li>
-							<li><a href="#writings" class="icon solid fa-pen-nib" aria-label="Writings"><span>Writings</span></a></li>
+							<li><a href="#outreach" class="icon solid fa-bullhorn" aria-label="Outreach" aria-controls="outreach-panel" aria-expanded="false"><span>Outreach</span></a></li>
+							<li><a href="#writings" class="icon solid fa-pen-nib" aria-label="Writings" aria-controls="writings-panel" aria-expanded="false"><span>Writings</span></a></li>
 							<li><a href="assets/documents/Ritika%20Sethi.pdf" class="icon regular fa-file-alt" aria-label="Open Ritika Sethi’s curriculum vitae" target="_blank" rel="noopener"><span>CV</span></a></li>
 							<li><a href="#contact" class="icon solid fa-envelope" aria-label="Contact" aria-controls="contact-panel" aria-expanded="false"><span>Contact</span></a></li>
 						</ul>
@@ -389,6 +389,18 @@
 							</div>
 						</article>
 					</div>
+				</article>
+			</section>
+			<section id="outreach-panel" class="about-panel-layer coming-soon-panel-layer" role="dialog" aria-modal="true" aria-labelledby="outreach-title" aria-hidden="true" inert>
+				<article class="about-placard coming-soon-placard">
+					<button class="about-close coming-soon-close" type="button" aria-label="Close Outreach panel">&times;</button>
+					<h2 id="outreach-title">Coming soon.</h2>
+				</article>
+			</section>
+			<section id="writings-panel" class="about-panel-layer coming-soon-panel-layer" role="dialog" aria-modal="true" aria-labelledby="writings-title" aria-hidden="true" inert>
+				<article class="about-placard coming-soon-placard">
+					<button class="about-close coming-soon-close" type="button" aria-label="Close Writings panel">&times;</button>
+					<h2 id="writings-title">Coming soon.</h2>
 				</article>
 			</section>
 			<section id="contact-panel" class="about-panel-layer contact-panel-layer" role="dialog" aria-modal="true" aria-labelledby="contact-title" aria-hidden="true" inert>
@@ -851,6 +863,39 @@
 				});
 				document.addEventListener('keydown', event => {
 					if (event.key === 'Escape' && panel.classList.contains('is-visible')) setOpen(false);
+				});
+			})();
+
+			(function setUpComingSoonPanels() {
+				const main = document.getElementById('main');
+				['outreach-panel', 'writings-panel'].forEach(panelId => {
+					const trigger = document.querySelector(`[aria-controls="${panelId}"]`);
+					const panel = document.getElementById(panelId);
+					if (!trigger || !panel) return;
+					const closeButton = panel.querySelector('.coming-soon-close');
+
+					function setOpen(open) {
+						panel.classList.toggle('is-visible', open);
+						panel.setAttribute('aria-hidden', String(!open));
+						panel.toggleAttribute('inert', !open);
+						trigger.setAttribute('aria-expanded', String(open));
+						main.toggleAttribute('inert', open);
+						document.body.classList.toggle('modal-open', open);
+						if (open) closeButton.focus();
+						else trigger.focus();
+					}
+
+					trigger.addEventListener('click', event => {
+						event.preventDefault();
+						setOpen(true);
+					});
+					closeButton.addEventListener('click', () => setOpen(false));
+					panel.addEventListener('click', event => {
+						if (event.target === panel) setOpen(false);
+					});
+					document.addEventListener('keydown', event => {
+						if (event.key === 'Escape' && panel.classList.contains('is-visible')) setOpen(false);
+					});
 				});
 			})();
 
