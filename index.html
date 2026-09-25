@@ -407,51 +407,32 @@
 				<article class="about-placard contact-placard">
 					<button class="about-close contact-close" type="button" aria-label="Close Contact panel">&times;</button>
 					<p class="about-kicker">Contact</p>
-					<div class="contact-intro">
-						<h2 id="contact-title">Get in touch</h2>
-						<p>I am always happy to talk about exoplanets, planetary evolution, collaborations, or science communication.</p>
-					</div>
-
-					<div class="contact-grid">
-						<a class="contact-card" href="mailto:rsethi@mit.edu" aria-label="Email Ritika Sethi at rsethi@mit.edu">
-							<span class="contact-card-icon fas fa-envelope" aria-hidden="true"></span>
-							<span class="contact-card-copy">
-								<strong>Email</strong>
-								<span>rsethi@mit.edu</span>
-							</span>
-						</a>
-
-						<div class="contact-card contact-card--static">
-							<span class="contact-card-icon fas fa-map-marker-alt" aria-hidden="true"></span>
-							<span class="contact-card-copy">
-								<strong>Office / MIT</strong>
-								<address>MIT Kavli Institute for Astrophysics and Space Research<br />McNair Building (Building 37)<br />70 Vassar St, Cambridge, MA 02139</address>
-							</span>
+					<div class="contact-layout">
+						<div class="contact-primary">
+							<div class="contact-intro">
+								<h2 id="contact-title">Get in touch</h2>
+								<p>I am always happy to talk about exoplanets, planetary evolution, collaborations, or science communication.</p>
+							</div>
+							<nav class="contact-links" aria-label="Contact and social links">
+								<a class="contact-link" href="mailto:rsethi@mit.edu" aria-label="Email Ritika Sethi at rsethi@mit.edu">
+									<span class="contact-link-icon fas fa-envelope" aria-hidden="true"></span>
+									<span><strong>Email</strong><small>rsethi@mit.edu</small></span>
+								</a>
+								<a class="contact-link" href="https://www.linkedin.com/in/ritika-sethi-a97131249?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="Connect with Ritika Sethi on LinkedIn">
+									<span class="contact-link-icon fab fa-linkedin-in" aria-hidden="true"></span>
+									<span><strong>LinkedIn</strong><small>Connect with me</small></span>
+								</a>
+								<a class="contact-link" href="https://www.instagram.com/prettyqrious/" target="_blank" rel="noopener noreferrer" aria-label="Visit PrettyQrious on Instagram">
+									<span class="contact-link-icon fab fa-instagram" aria-hidden="true"></span>
+									<span><strong>PrettyQrious</strong><small>Science communication &amp; astronomy</small></span>
+								</a>
+							</nav>
 						</div>
-
-						<a class="contact-card" href="https://www.linkedin.com/in/ritika-sethi-a97131249?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="Connect with Ritika Sethi on LinkedIn">
-							<span class="contact-card-icon fab fa-linkedin-in" aria-hidden="true"></span>
-							<span class="contact-card-copy">
-								<strong>LinkedIn</strong>
-								<span>Connect on LinkedIn</span>
-							</span>
-						</a>
-
-						<a class="contact-card" href="https://www.instagram.com/prettyqrious/" target="_blank" rel="noopener noreferrer" aria-label="Visit PrettyQrious on Instagram">
-							<span class="contact-card-icon fab fa-instagram" aria-hidden="true"></span>
-							<span class="contact-card-copy">
-								<strong>PrettyQrious</strong>
-								<span>Science communication &amp; astronomy</span>
-							</span>
-						</a>
-
-						<a class="contact-card contact-card--wide contact-card--placeholder" href="YOUR_SCIENCE_VIDEO_URL" aria-label="Science Communication Videos; link coming soon" aria-disabled="true" data-contact-placeholder>
-							<span class="contact-card-icon fas fa-play" aria-hidden="true"></span>
-							<span class="contact-card-copy">
-								<strong>Science Communication Videos</strong>
-								<span>Astronomy and exoplanet science explained through short videos · Link coming soon</span>
-							</span>
-						</a>
+						<aside class="contact-office" aria-labelledby="contact-office-title">
+							<span class="contact-office-icon fas fa-map-marker-alt" aria-hidden="true"></span>
+							<h3 id="contact-office-title">Office / MIT</h3>
+							<address>MIT Kavli Institute for Astrophysics and Space Research<br />McNair Building (Building 37)<br />70 Vassar St, Cambridge, MA 02139</address>
+						</aside>
 					</div>
 				</article>
 			</section>
@@ -857,9 +838,6 @@
 				closeButton.addEventListener('click', () => setOpen(false));
 				panel.addEventListener('click', event => {
 					if (event.target === panel) setOpen(false);
-				});
-				panel.querySelectorAll('[data-contact-placeholder]').forEach(link => {
-					link.addEventListener('click', event => event.preventDefault());
 				});
 				document.addEventListener('keydown', event => {
 					if (event.key === 'Escape' && panel.classList.contains('is-visible')) setOpen(false);
