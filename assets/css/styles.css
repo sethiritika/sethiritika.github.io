@@ -384,8 +384,11 @@ body { background: var(--night); }
 
 .contact-placard {
 	width: min(58rem, 94vw);
+	max-height: 84vh;
+	max-height: 84dvh;
 	background: linear-gradient(145deg, rgba(8, 11, 27, 0.975), rgba(19, 16, 35, 0.955));
 	box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.66), inset 0 1px 0 rgba(255, 255, 255, 0.065);
+	-webkit-overflow-scrolling: touch;
 }
 
 .contact-layout {
@@ -393,7 +396,11 @@ body { background: var(--night); }
 	grid-template-columns: minmax(0, 1.35fr) minmax(15rem, 0.85fr);
 	gap: clamp(2.5rem, 6vw, 5rem);
 	align-items: start;
+	width: 100%;
 }
+
+.contact-layout > *,
+.contact-link > span:last-child { min-width: 0; }
 
 .contact-intro {
 	max-width: 37rem;
@@ -435,10 +442,16 @@ body { background: var(--night); }
 
 .contact-link:last-child { border-bottom: 0; }
 
-.contact-link:hover,
 .contact-link:focus-visible {
 	border-color: rgba(199, 184, 229, 0.48);
 	transform: translateX(0.22rem);
+}
+
+@media (hover: hover) {
+	.contact-link:hover {
+		border-color: rgba(199, 184, 229, 0.48);
+		transform: translateX(0.22rem);
+	}
 }
 
 .contact-link-icon,
@@ -1064,6 +1077,7 @@ body { background: var(--night); }
 	.research-card-footer .research-paper-links a { min-height: 0; padding: 0.08rem 0; }
 	.research-card-footer .research-turn-prompt { align-self: flex-end; }
 	.contact-layout { grid-template-columns: 1fr; gap: 2.3rem; }
+	.contact-placard { max-height: 90vh; max-height: 90dvh; }
 	.contact-office { padding: 1.8rem 0 0; border-top: 1px solid rgba(199, 184, 229, 0.2); border-left: 0; }
 	.contact-placard .contact-intro h2 { font-size: 2.2rem; }
 	.contact-placard .contact-intro p { font-size: 1rem; line-height: 1.6; }
@@ -1077,6 +1091,15 @@ body { background: var(--night); }
 	background: linear-gradient(145deg, rgba(8, 11, 27, 0.96), rgba(19, 16, 35, 0.94));
 	-webkit-backdrop-filter: none;
 	backdrop-filter: none;
+}
+
+.is-safari .contact-placard {
+	-webkit-font-smoothing: antialiased;
+	-webkit-transform: translateY(1rem) scale(0.985);
+}
+
+.is-safari .contact-panel-layer.is-visible .contact-placard {
+	-webkit-transform: translateY(0) scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
