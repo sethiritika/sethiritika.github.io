@@ -1048,15 +1048,6 @@ body { background: var(--night); }
 	backdrop-filter: none;
 }
 
-.is-safari .contact-placard {
-	-webkit-font-smoothing: antialiased;
-	-webkit-transform: translateY(1rem) scale(0.985);
-}
-
-.is-safari .contact-panel-layer.is-visible .contact-placard {
-	-webkit-transform: translateY(0) scale(1);
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.research-card-inner { transition-duration: 0.01ms; }
 	.contact-link { transition-duration: 0.01ms; }
